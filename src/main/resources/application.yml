@@ -1,0 +1,43 @@
+server:
+  port: 8095
+
+#Spring ??
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver #?????
+    url:  jdbc:mysql://ec2database.c9cgu8u6knqf.ap-northeast-2.rds.amazonaws.com:3306/projectCicd #DB URL
+    username: 'admin' #?? (root? ??? ??)
+    password: 'park1204' #????
+
+  #Thymeleaf ??
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  #jpa ??
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update #drop, create, update
+    properties:
+      hibernate:
+        show_sql: true #SQL ???? ???
+        format_sql: true #SQL ??
+
+  #spring:   #oAuth2 ?? (google, kakao, naver)
+  profiles:
+    include: oauth2    #application-oauth2.yml
+
+  main:
+    allow-bean-definition-overriding: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+
+filePath: file:///c:/e1i4_file/
+
